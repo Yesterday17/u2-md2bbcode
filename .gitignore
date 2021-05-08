@@ -4,8 +4,8 @@
 # Git File
 !.gitignore
 
-# Travis File
-!.travis.yml
+# GitHub File
+!.github
 
 # GitHub Files
 !README.md
