@@ -1,8 +1,10 @@
 import markdown from "markdown-it";
 import container from "markdown-it-container";
+import ruby from "./markdown-it-ruby";
+import color from "markdown-it-color";
 import { RenderRule } from "markdown-it/lib/renderer";
 
-export const md = markdown("commonmark", {
+export const md = markdown("default", {
   html: false,
   xhtmlOut: false,
   linkify: true,
@@ -173,3 +175,12 @@ md.use(container, "pre", {
     }
   },
 });
+
+md.use(color);
+md.renderer.rules["color_open"] = (tokens, idx) =>
+  `[color=${tokens[idx].info}]`;
+md.renderer.rules["color_close"] = () => `[/color]`;
+
+md.use(ruby);
+md.renderer.rules["ruby_open"] = (tokens, idx) => `[rt=${tokens[idx].content}]`;
+md.renderer.rules["ruby_close"] = () => "[/rt]";
