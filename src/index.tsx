@@ -8,13 +8,6 @@ import Header from "./component/Header";
 
 import { md } from "./markdown";
 
-export interface RenderConfigItem {
-  [key: string]: {
-    prefix: string;
-    suffix: string;
-  };
-}
-
 const textObject = { text: "" };
 
 const muiTheme = Styles.createMuiTheme({
@@ -28,10 +21,8 @@ const muiTheme = Styles.createMuiTheme({
   },
 });
 
-const renderConfigItem: RenderConfigItem = {};
-
-function collectConfig(preset?: string) {
-  return { renderer: renderConfigItem, text: textObject.text };
+function collectConfig() {
+  return { text: textObject.text };
 }
 
 function onTransform(markdownText: string) {

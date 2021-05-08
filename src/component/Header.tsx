@@ -1,16 +1,12 @@
 import * as React from "react";
 
-import * as Index from "../index";
 import * as Hooks from "../hooks";
 
 import * as Core from "@material-ui/core";
 import * as Icons from "@material-ui/icons";
 
-import Config from "./Config";
-
 interface HeaderProps {
   configCollector(): {
-    renderer: Index.RenderConfigItem;
     text: string;
   };
 }
@@ -22,23 +18,22 @@ function Header(props: HeaderProps) {
       <Core.StylesProvider injectFirst={true}>
         <Core.Toolbar className={toolbar}>
           <Core.Typography variant="h5" className={title}>
-            <TitleSuffix />
+            <Title />
           </Core.Typography>
           <CopyOutput text={() => props.configCollector()["text"]} />
-          <Config configCollector={props.configCollector} />
         </Core.Toolbar>
       </Core.StylesProvider>
     </Core.AppBar>
   );
 }
 
-function TitleSuffix(props: {}) {
+function Title(props: {}) {
   const isSmall = !Core.useMediaQuery("@media (min-width: 768px)");
   const { titleSuffixSmall } = Hooks.useHeaderStyles();
   return isSmall ? (
-    <div className={titleSuffixSmall}>U2 Markdown To BBCode Converter</div>
+    <div className={titleSuffixSmall}>Markdown To U2 BBCode Converter</div>
   ) : (
-    <span>&nbsp;-&nbsp;U2 Markdown To BBCode Converter</span>
+    <span>Markdown To U2 BBCode Converter</span>
   );
 }
 
